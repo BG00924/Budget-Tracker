@@ -39,10 +39,7 @@ function uploadBudget() {
                 }
             })
                 .then(response => response.json())
-                .then(serverResponse => {
-                    if (serverResponse.message) {
-                        throw new Error(serverResponse)
-                    }
+                .then(() => {
                     const transaction = db.transaction(['new_budget'], 'readwrite')
                     const budgetObjectStore = transaction.objectStore('new_budget')
                     budgetObjectStore.clear()
